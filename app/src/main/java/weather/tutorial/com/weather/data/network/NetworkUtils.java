@@ -117,6 +117,7 @@ final class NetworkUtils {
      * @throws IOException Related to network and stream reading
      */
     static String getResponseFromHttpUrl(URL url) throws IOException {
+        Log.v(TAG, "-------> getResponseFromHttpUrl, URL: " + url);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();

@@ -73,9 +73,10 @@ public class WeatherNetworkDataSource {
      * Starts an intent service to fetch the weather.
      */
     public void startFetchWeatherService() {
+        Log.d(LOG_TAG, "---------> startFetchWeatherService()");
         Intent intentToFetch = new Intent(mContext, SunshineSyncIntentService.class);
         mContext.startService(intentToFetch);
-        Log.d(LOG_TAG, "---------> Service created");
+        Log.d(LOG_TAG, "---------> mContext.startService called");
     }
 
     /**

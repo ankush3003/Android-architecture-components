@@ -22,4 +22,10 @@ public interface WeatherDao {
 
     @Query("SELECT * FROM weather WHERE date = :date")
     LiveData<WeatherEntry> getWeatherByDate(Date date);
+
+    @Query("SELECT COUNT(*) from weather WHERE date >= :today")
+    int countAllFutureWeather(Date today);
+
+    @Query("DELETE FROM weather WHERE date < :today")
+    void deleteOldData(Date today);
 }
