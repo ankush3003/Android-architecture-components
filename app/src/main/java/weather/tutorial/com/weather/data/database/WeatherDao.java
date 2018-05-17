@@ -1,7 +1,6 @@
 package weather.tutorial.com.weather.data.database;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -10,11 +9,9 @@ import android.arch.persistence.room.Query;
 import java.util.Date;
 import java.util.List;
 
-
 /**
- * Created by ankush3003 on 12/05/18.
+ * {@link Dao} provides APIs for all data operations.
  */
-
 @Dao
 public interface WeatherDao {
 

@@ -2,9 +2,6 @@ package weather.tutorial.com.weather.data.database;
 
 import android.arch.persistence.room.TypeConverter;
 import java.util.Date;
-/**
- * Created by ankush3003 on 12/05/18.
- */
 
 /**
  * {@link TypeConverter} for long to {@link Date}

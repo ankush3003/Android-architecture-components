@@ -17,6 +17,7 @@ import weather.tutorial.com.weather.utils.SunshineWeatherUtils;
 import weather.tutorial.com.weather.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends AppCompatActivity {
+
     private final String TAG = this.getClass().getSimpleName();
     public static final String WEATHER_ID_EXTRA = "WEATHER_ID_EXTRA";
 

@@ -5,6 +5,7 @@ import java.util.Date;
 /**
  * Simplified {@link WeatherEntry} which only contains the details needed for the weather list in
  * the {@link weather.tutorial.com.weather.ui.main.ForecastAdapter}
+ * used in {@link weather.tutorial.com.weather.ui.main.MainActivity}
  */
 public class ListViewWeatherEntry {
 
