@@ -40,9 +40,4 @@ public class DetailActivityViewModel extends ViewModel {
         return mWeather;
     }
 
-    // postVlaue will trigger all observers of LiveData
-//    public void setWeather(WeatherEntry weatherEntry) {
-//        mWeather.postValue(weatherEntry);
-//    }
-
 }

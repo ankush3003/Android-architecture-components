@@ -4,8 +4,10 @@ import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
 import java.util.Date;
+import java.util.List;
 
 import weather.tutorial.com.weather.AppExecutors;
+import weather.tutorial.com.weather.data.database.ListViewWeatherEntry;
 import weather.tutorial.com.weather.data.database.WeatherDao;
 import weather.tutorial.com.weather.data.database.WeatherEntry;
 import weather.tutorial.com.weather.data.network.WeatherNetworkDataSource;
@@ -120,4 +122,9 @@ public class SunshineRepository {
         return mWeatherDao.getWeatherByDate(date);
     }
 
+    public LiveData<List<ListViewWeatherEntry>> getCurrentWeatherForecasts() {
+        initializeData();
+        Date today = SunshineDateUtils.getNormalizedUtcDateForToday();
+        return mWeatherDao.getCurrentWeatherForecasts(today);
+    }
 }

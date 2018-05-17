@@ -11,6 +11,7 @@ import weather.tutorial.com.weather.data.SunshineRepository;
 import weather.tutorial.com.weather.data.database.WeatherDatabase;
 import weather.tutorial.com.weather.data.network.WeatherNetworkDataSource;
 import weather.tutorial.com.weather.ui.detail.DetailViewModelFactory;
+import weather.tutorial.com.weather.ui.main.MainViewModelFactory;
 
 /**
  * Provides static methods to inject the various classes needed for Sunshine
@@ -39,9 +40,9 @@ public class InjectorUtils {
         return new DetailViewModelFactory(repository, date);
     }
 
-//    public static MainViewModelFactory provideMainActivityViewModelFactory(Context context) {
-//        SunshineRepository repository = provideRepository(context.getApplicationContext());
-//        return new MainViewModelFactory(repository);
-//    }
+    public static MainViewModelFactory provideMainActivityViewModelFactory(Context context) {
+        SunshineRepository repository = provideRepository(context.getApplicationContext());
+        return new MainViewModelFactory(repository);
+    }
 
 }
