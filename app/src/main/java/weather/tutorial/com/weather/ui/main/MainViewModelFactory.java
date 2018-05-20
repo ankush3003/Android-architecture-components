@@ -3,15 +3,11 @@ package weather.tutorial.com.weather.ui.main;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import java.util.Date;
-
 import weather.tutorial.com.weather.data.SunshineRepository;
-import weather.tutorial.com.weather.ui.detail.DetailActivityViewModel;
 
 /**
- * Created by ankush3003 on 17/05/18.
+ * Factory to create {@link MainActivityViewModel}
  */
-
 public class MainViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private final SunshineRepository mRepository;
 

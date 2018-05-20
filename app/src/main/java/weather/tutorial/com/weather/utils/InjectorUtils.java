@@ -19,8 +19,13 @@ import weather.tutorial.com.weather.ui.main.MainViewModelFactory;
 public class InjectorUtils {
     private final static String TAG = "InjectorUtils";
 
+    /**
+     * Provides Repository - which handles DB/Network APIs. {@link SunshineRepository}
+     *
+     * @param context
+     * @return
+     */
     public static SunshineRepository provideRepository(Context context) {
-        Log.d(TAG, "-------------->provideRepository");
         WeatherDatabase database = WeatherDatabase.getInstance(context.getApplicationContext());
         AppExecutors executors = AppExecutors.getInstance();
         WeatherNetworkDataSource networkDataSource =
@@ -29,14 +34,12 @@ public class InjectorUtils {
     }
 
     public static WeatherNetworkDataSource provideNetworkDataSource(Context context) {
-        Log.d(TAG, "-------------->provideNetworkDataSource");
         AppExecutors executors = AppExecutors.getInstance();
         return WeatherNetworkDataSource.getInstance(context.getApplicationContext(), executors);
     }
 
     public static DetailViewModelFactory provideDetailViewModelFactory(Context context, Date date) {
         SunshineRepository repository = provideRepository(context.getApplicationContext());
-        Log.d(TAG, "-------------->provideDetailViewModelFactory");
         return new DetailViewModelFactory(repository, date);
     }
 

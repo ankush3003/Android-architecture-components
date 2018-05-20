@@ -1,19 +1,13 @@
 package weather.tutorial.com.weather.ui.main;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import java.util.Date;
 
@@ -21,43 +15,23 @@ import weather.tutorial.com.weather.R;
 import weather.tutorial.com.weather.ui.detail.DetailActivity;
 import weather.tutorial.com.weather.utils.InjectorUtils;
 
+/**
+ * Displays Weather data overview (with min - max temp) for future 14 days
+ */
 public class MainActivity extends AppCompatActivity implements ForecastAdapter.ForecastAdapterOnItemClickHandler{
     private final String TAG = this.getClass().getSimpleName();
-    private TextView mTextMessage;
+
+    // Weather data list items
     private RecyclerView mRecyclerView;
     private int mPosition = RecyclerView.NO_POSITION;
+
     private ProgressBar mLoadingIndicator;
     private ForecastAdapter mForecastAdapter;
-
-
-    /*private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //mTextMessage = (TextView) findViewById(R.id.message);
-        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         mRecyclerView = findViewById(R.id.recyclerview_forecast);
         mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
@@ -71,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapter.F
         mForecastAdapter = new ForecastAdapter(this, this);
         mRecyclerView.setAdapter(mForecastAdapter);
 
+        // Get ViewModel and start observing data.
         getViewModel().getForecast().observe(this, weatherEntries -> {
+            // refresh list
             mForecastAdapter.swapForecast(weatherEntries);
             if (mPosition == RecyclerView.NO_POSITION) mPosition = 0;
             mRecyclerView.smoothScrollToPosition(mPosition);
@@ -87,11 +63,21 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapter.F
 
     }
 
+    /**
+     * Gets ViewModel from MainViewModelFactory instantiated using dependency injection
+     *
+     * @return MainActivityViewModel
+     */
     private MainActivityViewModel getViewModel() {
         MainViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(this);
         return ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
     }
 
+    /**
+     * Handles onclick - open detail activity
+     *
+     * @param date
+     */
     @Override
     public void onItemClick(Date date) {
         Intent weatherDetailIntent = new Intent(MainActivity.this, DetailActivity.class);
@@ -100,12 +86,17 @@ public class MainActivity extends AppCompatActivity implements ForecastAdapter.F
         startActivity(weatherDetailIntent);
     }
 
-
+    /**
+     * Hides loading indicator and shows weather list.
+     */
     private void showWeatherDataView() {
         mLoadingIndicator.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Shows loading indicator while data is unavailable.
+     */
     private void showLoading() {
         mRecyclerView.setVisibility(View.INVISIBLE);
         mLoadingIndicator.setVisibility(View.VISIBLE);

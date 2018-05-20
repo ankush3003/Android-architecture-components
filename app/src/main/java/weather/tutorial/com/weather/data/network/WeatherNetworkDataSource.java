@@ -55,11 +55,11 @@ public class WeatherNetworkDataSource {
      * Get the singleton for this class
      */
     public static WeatherNetworkDataSource getInstance(Context context, AppExecutors executors) {
-        Log.d(LOG_TAG, "----> Getting the network data source");
+        Log.d(LOG_TAG, "Getting the network data source");
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = new WeatherNetworkDataSource(context.getApplicationContext(), executors);
-                Log.d(LOG_TAG, "---------> Made new network data source");
+                Log.d(LOG_TAG, "Made new network data source");
             }
         }
         return sInstance;
@@ -73,10 +73,8 @@ public class WeatherNetworkDataSource {
      * Starts an intent service to fetch the weather.
      */
     public void startFetchWeatherService() {
-        Log.d(LOG_TAG, "---------> startFetchWeatherService()");
         Intent intentToFetch = new Intent(mContext, SunshineSyncIntentService.class);
         mContext.startService(intentToFetch);
-        Log.d(LOG_TAG, "---------> mContext.startService called");
     }
 
     /**
@@ -135,7 +133,6 @@ public class WeatherNetworkDataSource {
      * Gets the newest weather
      */
     void fetchWeather() {
-        Log.d(LOG_TAG, "------->Fetch weather started");
         mExecutors.networkIO().execute(() -> {
             try {
 
@@ -150,7 +147,7 @@ public class WeatherNetworkDataSource {
 
                 // Parse the JSON into a list of weather forecasts
                 WeatherResponse response = new OpenWeatherJsonParser().parse(jsonWeatherResponse);
-                Log.d(LOG_TAG, "--------> JSON Parsing finished");
+                Log.d(LOG_TAG, "JSON Parsing finished");
 
 
                 // As long as there are weather forecasts, update the LiveData storing the most recent

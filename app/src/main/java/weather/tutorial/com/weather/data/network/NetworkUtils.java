@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2017 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package weather.tutorial.com.weather.data.network;
 
 import android.net.Uri;
@@ -32,31 +17,8 @@ final class NetworkUtils {
 
     private static final String TAG = NetworkUtils.class.getSimpleName();
 
-    /*
-     * Sunshine was originally built to use OpenWeatherMap's API. However, we wanted to provide
-     * a way to much more easily test the app and provide more varied weather data. After all, in
-     * Mountain View (Google's HQ), it gets very boring looking at a forecast of perfectly clear
-     * skies at 75°F every day... (UGH!) The solution we came up with was to host our own fake
-     * weather server. With this server, there are two URL's you can use. The first (and default)
-     * URL will return dynamic weather data. Each time the app refreshes, you will get different,
-     * completely random weather data. This is incredibly useful for testing the robustness of your
-     * application, as different weather JSON will provide edge cases for some of your methods.
-     *
-     */
-    private static final String DYNAMIC_WEATHER_URL =
+    private static final String FORECAST_BASE_URL =
             "https://andfun-weather.udacity.com/weather";
-
-    private static final String STATIC_WEATHER_URL =
-            "https://andfun-weather.udacity.com/staticweather";
-
-    private static final String FORECAST_BASE_URL = DYNAMIC_WEATHER_URL;
-
-    /*
-     * NOTE: These values only effect responses from OpenWeatherMap, NOT from the fake weather
-     * server. They are simply here to allow us to teach you how to build a URL if you were to use
-     * a real API. If you want to connect your app to OpenWeatherMap's API, feel free to! However,
-     * we are not going to show you how to do so in this training.
-     */
 
     /* The format we want our API to return */
     private static final String format = "json";
@@ -101,7 +63,7 @@ final class NetworkUtils {
 
         try {
             URL weatherQueryUrl = new URL(weatherQueryUri.toString());
-            Log.v(TAG, "-------> URL: " + weatherQueryUrl);
+            Log.v(TAG, " URL: " + weatherQueryUrl);
             return weatherQueryUrl;
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -117,7 +79,6 @@ final class NetworkUtils {
      * @throws IOException Related to network and stream reading
      */
     static String getResponseFromHttpUrl(URL url) throws IOException {
-        Log.v(TAG, "-------> getResponseFromHttpUrl, URL: " + url);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         try {
             InputStream in = urlConnection.getInputStream();
@@ -131,6 +92,7 @@ final class NetworkUtils {
                 response = scanner.next();
             }
             scanner.close();
+            Log.v(TAG, " Response:  " + response);
             return response;
         } finally {
             urlConnection.disconnect();

@@ -43,7 +43,7 @@ public class SunshineRepository {
 
                 // Insert our new weather data into Sunshine's database
                 mWeatherDao.bulkInsert(newForecastsFromNetwork);
-                Log.d(TAG, "--------> New values inserted");
+                Log.d(TAG, "New values inserted");
             });
         });
     }
@@ -51,12 +51,10 @@ public class SunshineRepository {
     public synchronized static SunshineRepository getInstance(
             WeatherDao weatherDao, WeatherNetworkDataSource weatherNetworkDataSource,
             AppExecutors executors) {
-        Log.d(TAG, "-------> Getting the repository");
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = new SunshineRepository(weatherDao, weatherNetworkDataSource,
                         executors);
-                Log.d(TAG, "-------> Made new repository");
             }
         }
         return sInstance;
@@ -67,7 +65,6 @@ public class SunshineRepository {
      * immediate sync is required, this method will take care of making sure that sync occurs.
      */
     public synchronized void initializeData() {
-        Log.d(TAG, "--------> initializeData()");
         // Only perform initialization once per app lifetime. If initialization has already been
         // performed, we have nothing to do in this method.
         if (mInitialized) return;
@@ -75,12 +72,8 @@ public class SunshineRepository {
 
         mExecutors.diskIO().execute(() -> {//CODE ON DISK I/O THREAD HERE})}
             if (isFetchNeeded()) {
-                Log.d(TAG, "--------> startFetchWeatherService()");
                 startFetchWeatherService();
-            } else {
-                Log.d(TAG, "--------> startFetchWeatherService() NOT REQUIRED");
             }
-
         });
 
     }

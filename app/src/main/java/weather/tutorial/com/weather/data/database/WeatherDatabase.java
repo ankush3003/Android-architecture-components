@@ -7,9 +7,9 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 /**
- * Created by ankush3003 on 12/05/18.
+ * {@link Database} for sunshine project.
+ * Specify list of {@link TypeConverters} required.
  */
-
 @Database(entities = {WeatherEntry.class}, version = 1)
 @TypeConverters(DateConvertor.class)
 public abstract class WeatherDatabase extends RoomDatabase {
@@ -19,6 +19,7 @@ public abstract class WeatherDatabase extends RoomDatabase {
     private static final Object LOCK = new Object();
     private static volatile WeatherDatabase sInstance;
 
+    // Getter for Dao
     public abstract WeatherDao weatherDao();
 
     public static WeatherDatabase getInstance(Context context) {

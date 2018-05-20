@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Date;
 
 /**
- * Created by ankush3003 on 12/05/18.
+ * Object used for mapping by ROOM
  */
 @Entity(tableName = "weather", indices = {@Index(value = {"date"}, unique = true)})
 public class WeatherEntry {
