@@ -3,7 +3,7 @@
 This project demonstrates usage of android architecture components like ViewModel, ROOM, LiveData and Data Binding library using MVVM pattern.
 More info about Architecture components can be found here: [architecture components](https://developer.android.com/topic/libraries/architecture/)
 
-![App Demo](https://github.com/ankush3003/MVP-Android/blob/25e42901b771bda78f2a8f4f715ae1fd91d277e0/app/demo.gif)
+![App Demo](https://github.com/ankush3003/Android-architecture-components/blob/10f1f4931e1d4d91395fb20a82716eb597ee596d/app/sunshine_demo.gif)
 
 
 ## Components
