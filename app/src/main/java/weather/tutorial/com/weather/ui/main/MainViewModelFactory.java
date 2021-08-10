@@ -1,7 +1,8 @@
 package weather.tutorial.com.weather.ui.main;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import weather.tutorial.com.weather.data.SunshineRepository;
 

@@ -1,7 +1,7 @@
 package weather.tutorial.com.weather.ui.detail;///*
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Date;
 

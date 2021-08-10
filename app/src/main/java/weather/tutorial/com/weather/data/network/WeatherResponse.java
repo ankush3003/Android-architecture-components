@@ -1,6 +1,7 @@
 package weather.tutorial.com.weather.data.network;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import weather.tutorial.com.weather.data.database.WeatherEntry;
 

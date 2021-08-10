@@ -1,7 +1,8 @@
 package weather.tutorial.com.weather.data;
 
-import android.arch.lifecycle.LiveData;
 import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 
 import java.util.Date;
 import java.util.List;

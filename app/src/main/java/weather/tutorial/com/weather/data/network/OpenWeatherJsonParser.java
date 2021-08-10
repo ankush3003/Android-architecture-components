@@ -1,7 +1,7 @@
 package weather.tutorial.com.weather.data.network;
 
-import android.support.annotation.Nullable;
 
+import androidx.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONException;
