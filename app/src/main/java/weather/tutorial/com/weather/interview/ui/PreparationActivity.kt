@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import weather.tutorial.com.weather.R
 import weather.tutorial.com.weather.interview.data.PrepData
 import weather.tutorial.com.weather.interview.utils.PrepListAdapter
+import weather.tutorial.com.weather.problems.activitylifecycle.ActivityA
 import weather.tutorial.com.weather.ui.main.MainActivity
 
 class PreparationActivity : AppCompatActivity() {
@@ -43,7 +44,7 @@ class PreparationActivity : AppCompatActivity() {
                 startActivity(Intent(this, MainActivity::class.java))
             }
             PROBLEMS.ACTIVITY_LIFECYCLE.value -> {
-
+                startActivity(Intent(this, ActivityA::class.java))
             }
         }
     }
